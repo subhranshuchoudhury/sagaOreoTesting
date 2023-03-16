@@ -8,6 +8,8 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+import ShareModule from './commonjs/ShareModule';
+ShareModule;
 
 const Notices = props => {
   const [data, setData] = useState(undefined);
@@ -28,6 +30,7 @@ const Notices = props => {
       });
   };
   useEffect(() => {
+    // ShareModule();
     setData(undefined);
     switch (choice) {
       case 1:
@@ -96,7 +99,14 @@ const Notices = props => {
                 {index + 1}. {item.event}
               </Text>
             </View>
-            <Text style={[style.box, style.notice_date]}>{item.s_date}</Text>
+
+            <Text
+              onPress={() =>
+                ShareModule(item.s_date + ': ' + item.event, item.eventLink)
+              }
+              style={[style.box, style.notice_date]}>
+              {item.s_date}
+            </Text>
           </TouchableOpacity>
         )}
         keyExtractor={() => key_extractor++}
@@ -115,9 +125,6 @@ const style = StyleSheet.create({
     borderRadius: 8,
     borderBottomRightRadius: 0,
     borderBottomLeftRadius: 0,
-    shadowColor: 'black',
-    opacity: 1,
-    elevation: 10,
     marginBottom: 0.5,
   },
   item: {

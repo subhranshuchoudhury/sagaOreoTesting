@@ -1,14 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {View, SafeAreaView, StyleSheet} from 'react-native';
-// import Test from './components/Test';
-import Notices from './components/Notices';
+import Home from './pages/Home';
+import Login from './pages/Login';
 
 const App = () => {
   return (
     <View style={style.container}>
       <SafeAreaView>
-        <Notices />
+        {/* <Home /> */}
+        <Login />
       </SafeAreaView>
     </View>
   );
@@ -17,7 +18,6 @@ const App = () => {
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 2,
     backgroundColor: '#ffff',
   },
 });
