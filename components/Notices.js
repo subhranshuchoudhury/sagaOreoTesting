@@ -93,7 +93,7 @@ const Notices = props => {
         horizontal
         data={data}
         renderItem={({item, index}) => (
-          <TouchableOpacity onPress={() => console.warn(item.eventLink)}>
+          <TouchableOpacity onPress={() => props.redirector(item.eventLink)}>
             <View style={style.box}>
               <Text style={style.item}>
                 {index + 1}. {item.event}
@@ -146,7 +146,7 @@ const style = StyleSheet.create({
   },
 
   chosen: {
-    backgroundColor: '#53C5F6',
+    backgroundColor: '#0965B6',
     color: '#ffff',
   },
   notice_date: {
