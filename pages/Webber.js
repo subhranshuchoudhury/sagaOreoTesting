@@ -1,6 +1,8 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, Alert} from 'react-native';
+import * as Progress from 'react-native-progress';
+
 import WebView from 'react-native-webview';
 const Webber = props => {
   const [load, setLoad] = useState(true);
@@ -8,14 +10,17 @@ const Webber = props => {
     <View style={styles.WebViewContainer}>
       {load ? (
         <>
-          <Image
-            style={styles.imageLoader}
-            source={require('../images/oreo_loader.gif')}
-          />
+          <Progress.Bar color="#0099ff" indeterminate={true} width={360} />
           <Text style={styles.text}>Please wait...</Text>
         </>
       ) : null}
       <WebView
+        onError={() =>
+          Alert.alert(
+            'Oops!',
+            'Kindly check your internet connection. or reload the app.',
+          )
+        }
         pullToRefreshEnabled={true}
         onLoadEnd={() => setLoad(false)}
         onLoad={() => setLoad(true)}
@@ -25,12 +30,6 @@ const Webber = props => {
     </View>
   );
 };
-
-// const loader = () => {
-//   return (
-
-//   );
-// };
 
 const styles = StyleSheet.create({
   text: {

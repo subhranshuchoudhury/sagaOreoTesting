@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import ChangePass from './pages/ChangePass';
 import Webber from './pages/Webber';
 import ForgotPass from './pages/ForgotPass';
+import Profile from './components/Profile';
 
 const Stack = createNativeStackNavigator();
 const App = props => {
@@ -37,6 +38,7 @@ const App = props => {
             component={ForgotPass}
           />
           <Stack.Screen name="ChangePassword" component={ChangePass} />
+          <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

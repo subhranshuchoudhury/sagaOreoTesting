@@ -49,7 +49,7 @@ const Notices = props => {
     console.log('Notices..');
   }, [choice]);
   return (
-    <View>
+    <>
       <View style={style.notice_btn_container}>
         <Text
           style={
@@ -83,7 +83,7 @@ const Notices = props => {
             }>
             <Text style={style.item}>
               {isLoading ? (
-                <ActivityIndicator size={'large'} />
+                <ActivityIndicator color={'#ffff'} size={'large'} />
               ) : (
                 'There is having some issues while fetching the notices from the server! This is a temporary error.'
               )}
@@ -111,7 +111,7 @@ const Notices = props => {
         )}
         keyExtractor={() => key_extractor++}
       />
-    </View>
+    </>
   );
 };
 
@@ -141,7 +141,6 @@ const style = StyleSheet.create({
     color: 'black',
     padding: 5,
     margin: 4,
-    // backgroundColor: '#53C5F6',
     borderRadius: 20,
   },
 
