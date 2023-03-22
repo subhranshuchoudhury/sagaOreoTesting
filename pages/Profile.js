@@ -15,7 +15,7 @@ import {
   Alert,
   Button,
 } from 'react-native';
-import SingleDetailView from './SingleDetailView';
+import SingleDetailView from '../components/SingleDetailView';
 const Profile = props => {
   const [USER_DATA, setUSER_DATA] = useState(undefined);
   const [ProfileData, SetProfileData] = useState(undefined);
@@ -264,8 +264,10 @@ const Profile = props => {
         <TouchableOpacity style={styles.btn}>
           <Button onPress={() => logOut()} title={'logout'} />
         </TouchableOpacity>
+
         <TouchableOpacity style={styles.btn}>
           <Button
+            disabled={props.route.params.data.isError ? true : false}
             onPress={() => props.navigation.navigate('ChangePassword')}
             title={'change password'}
           />

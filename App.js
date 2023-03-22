@@ -1,15 +1,19 @@
 /* eslint-disable react-native/no-inline-styles */
+// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-// import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import ChangePass from './pages/ChangePass';
-import Webber from './pages/Webber';
+import Webber from './components/commonjs/Webber';
 import ForgotPass from './pages/ForgotPass';
-import Profile from './components/Profile';
+import Profile from './pages/Profile';
+import Attendance from './pages/Attendance';
+import ResultView from './pages/ResultView';
+import DetailedResultView from './pages/DetailedResultView';
 
 const Stack = createNativeStackNavigator();
 const App = props => {
@@ -26,7 +30,7 @@ const App = props => {
           />
           <Stack.Screen
             options={{
-              headerTitle: 'Oreo',
+              headerTitle: 'Web',
             }}
             component={Webber}
             name="Webber"
@@ -39,6 +43,9 @@ const App = props => {
           />
           <Stack.Screen name="ChangePassword" component={ChangePass} />
           <Stack.Screen name="Profile" component={Profile} />
+          <Stack.Screen name="Attendance" component={Attendance} />
+          <Stack.Screen name="Result" component={ResultView} />
+          <Stack.Screen name="Detailed Result" component={DetailedResultView} />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

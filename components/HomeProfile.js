@@ -37,7 +37,8 @@ const HomeProfile = props => {
       style={[{width: '100%', height: '50%'}, styles.backgroundImage]}
       source={require('../images/wave.png')}>
       <View style={styles.container}>
-        <TouchableOpacity onPress={() => props.nav('Profile')}>
+        <TouchableOpacity
+          onPress={() => props.nav('Profile', {isError: props.isError})}>
           <Image
             style={[
               styles.profileImage,

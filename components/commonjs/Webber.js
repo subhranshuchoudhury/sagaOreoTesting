@@ -17,8 +17,8 @@ const Webber = props => {
       <WebView
         onError={() =>
           Alert.alert(
-            'Oops!',
-            'Kindly check your internet connection. or reload the app.',
+            'Sayad Internet Nahin Hai!',
+            'Aapka internet connection mai dikkat hai. Application ko re-open karo sayad issue fix ho jaye.',
           )
         }
         pullToRefreshEnabled={true}

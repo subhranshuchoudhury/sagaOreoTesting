@@ -2,5 +2,6 @@
     "cSpell.words": [
         "redirector",
         "Webber"
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "disabled"
 }
