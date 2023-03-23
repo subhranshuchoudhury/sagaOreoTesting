@@ -3,15 +3,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Progress from 'react-native-progress';
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  StatusBar,
-  ScrollView,
-  StyleSheet,
-  Alert,
-  Button,
-} from 'react-native';
-// import {View, StyleSheet} from 'react-native';
+import {View, StatusBar, ScrollView, StyleSheet, Alert} from 'react-native';
 import HomeProfile from '../components/HomeProfile';
 import Notices from '../components/Notices';
 import PersonalNotice from '../components/PersonalNotice';
@@ -117,7 +109,7 @@ const Home = props => {
 
         <View style={styles.navBtnContainer}>
           <ScrollView>
-            <NavigationButtons nav={nav} />
+            <NavigationButtons redirector={redirector} nav={nav} />
           </ScrollView>
         </View>
       </ScrollView>

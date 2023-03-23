@@ -1,21 +1,21 @@
 /* eslint-disable prettier/prettier */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, {useState} from 'react';
+import * as Progress from 'react-native-progress';
 import {
   View,
   StyleSheet,
-  Modal,
   Text,
   TouchableHighlight,
   Image,
   TextInput,
   Button,
+  Alert,
 } from 'react-native';
 
-const ChangePass = () => {
+const ChangePass = props => {
   const [show, setShow] = useState(false);
   const [pass, setPass] = useState('');
-  const [msg, setMsg] = useState(false);
   const changePassActivity = async () => {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
@@ -36,44 +36,44 @@ const ChangePass = () => {
       .then(final => {
         if (final.Success === 'Password Updated Successfully') {
           setShow(false);
-          setMsg(true);
+          Alert.alert(
+            'Password change ho chukka hai!',
+            'Aapko phirse login karna padega.',
+          );
+          logOut();
+        } else {
+          Alert.alert(
+            'Kuch dikkat hai!',
+            'Server se invalid response prapt hua, application ko restart karo sayad thik hojayega.',
+          );
         }
       })
       .catch(err => {
-        console.error(err);
+        console.log(err);
         setShow(false);
+        Alert.alert('Server mai kuch samasya hai!', 'Kuch deer baad try karo.');
       });
+  };
+  const logOut = async () => {
+    try {
+      await AsyncStorage.clear();
+    } catch (e) {
+      console.log(e);
+    }
+    props.navigation.reset({
+      index: 0,
+      routes: [{name: 'Login'}],
+    });
+    props.navigation.navigate('Login');
+    console.log('ChangePass.js/ logOut() Done. >> Login.js');
   };
   return (
     <View style={styles.loginContainer}>
-      <Modal transparent={false} visible={show} animationType="slide">
-        <View style={styles.centerView}>
-          <View style={styles.modalView}>
-            <Image
-              source={require('../images/oreo_loader.gif')}
-              style={styles.modalImage}
-            />
-            <Text style={styles.modalText}>Processing...</Text>
-          </View>
+      {show ? (
+        <View style={styles.authLoader}>
+          <Progress.Bar color="#0099ff" indeterminate={true} width={360} />
         </View>
-      </Modal>
-      <Modal transparent={false} visible={msg} animationType="slide">
-        <View style={styles.centerView}>
-          <View style={styles.modalView}>
-            <Image
-              source={require('../images/green_tick.gif')}
-              style={styles.modalImage}
-            />
-            <Text style={styles.modalText}>
-              Yay! Password has been changed.
-            </Text>
-            <TouchableHighlight>
-              <Button onPress={() => setMsg(false)} title="close" />
-            </TouchableHighlight>
-          </View>
-        </View>
-      </Modal>
-
+      ) : null}
       <Image
         style={styles.image}
         source={require('../images/oreo_music.gif')}
@@ -127,30 +127,6 @@ const styles = StyleSheet.create({
   loginButton: {
     width: '70%',
     marginTop: 30,
-  },
-
-  centerView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalView: {
-    backgroundColor: 'skyblue',
-    padding: 10,
-    borderRadius: 10,
-    shadowColor: 'black',
-    elevation: 5,
-    alignItems: 'center',
-  },
-  modalText: {
-    marginBottom: 10,
-    color: '#ffff',
-    textAlign: 'center',
-    marginTop: 10,
-  },
-  modalImage: {
-    width: 150,
-    height: 150,
   },
 });
 

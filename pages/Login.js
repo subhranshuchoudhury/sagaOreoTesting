@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import React, {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Progress from 'react-native-progress';
 
 import {
   View,
@@ -10,8 +11,8 @@ import {
   Image,
   TouchableHighlight,
   Button,
-  Modal,
   StatusBar,
+  Alert,
 } from 'react-native';
 
 const Login = props => {
@@ -59,6 +60,10 @@ const Login = props => {
           props.navigation.navigate('Home');
         } else {
           setShow(false);
+          Alert.alert(
+            'Areh Yaar! Bhul gaye?',
+            'Apnaa ID & Password check karo galat hai. Agar yaad nahin to forgot password main click karo.',
+          );
           console.log('Login.js/ Login Failed!, 401');
         }
       })
@@ -91,18 +96,11 @@ const Login = props => {
   return (
     <View style={styles.loginContainer}>
       <StatusBar backgroundColor={'#0099ff'} />
-      <Modal transparent={false} visible={show} animationType="slide">
-        <View style={styles.centerView}>
-          <View style={styles.modalView}>
-            <Image
-              source={require('../images/oreo_loader.gif')}
-              style={styles.modalImage}
-            />
-            <Text style={styles.modalText}>Loading...</Text>
-          </View>
+      {show ? (
+        <View style={styles.authLoader}>
+          <Progress.Bar color="#0099ff" indeterminate={true} width={360} />
         </View>
-      </Modal>
-
+      ) : null}
       <Image
         style={styles.image}
         source={require('../images/oreo_music.gif')}
@@ -130,7 +128,7 @@ const Login = props => {
           <Button
             onPress={() => loginActivity()}
             disabled={regId.length > 0 && pass.length > 0 ? false : true}
-            title={regId.length > 0 && pass.length > 0 ? 'login' : 'oreo'}
+            title={regId.length > 0 && pass.length > 0 ? 'login' : 'Welcome'}
           />
         </TouchableHighlight>
 
@@ -175,29 +173,6 @@ const styles = StyleSheet.create({
   forgotPass: {
     color: 'black',
     marginTop: 30,
-  },
-  centerView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'red',
-  },
-  modalView: {
-    backgroundColor: 'skyblue',
-    padding: 10,
-    borderRadius: 10,
-    shadowColor: 'black',
-    elevation: 5,
-  },
-  modalText: {
-    marginBottom: 10,
-    color: '#ffff',
-    textAlign: 'center',
-    marginTop: 10,
-  },
-  modalImage: {
-    width: 150,
-    height: 150,
   },
 });
 

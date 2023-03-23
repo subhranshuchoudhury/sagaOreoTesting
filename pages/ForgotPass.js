@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, {useState} from 'react';
-
+import * as Progress from 'react-native-progress';
 import {
   View,
   StyleSheet,
@@ -9,14 +9,13 @@ import {
   Image,
   TouchableHighlight,
   Button,
-  Modal,
+  Alert,
   StatusBar,
 } from 'react-native';
 
 const ForgotPass = props => {
   const [regId, setRegId] = useState('');
   const [phone, setPhone] = useState('');
-  const [msg, setMsg] = useState(false);
   const [show, setShow] = useState(false);
   const [levelOne, setLevelOne] = useState(false);
 
@@ -32,7 +31,7 @@ const ForgotPass = props => {
           setRegId(final.studentdata.Data.mobileno);
           setLevelOne(true);
         } else {
-          console.log('Record Does not Exist');
+          Alert.alert('Galat ID!', 'Apna registration number recheck karo!');
         }
       })
       .catch(err => {
@@ -50,7 +49,11 @@ const ForgotPass = props => {
       .then(final => {
         setShow(false);
         if (final.studentdata.SUCCESS) {
-          setMsg(true);
+          Alert.alert(
+            'SMS Inbox Check Karo!',
+            'Aapna sms inbox main SOA ke taraf se ek sms aya hoga, Usme ID & Password hai.',
+          );
+          props.navigation.navigate('Login');
         }
       })
       .catch(err => {
@@ -62,32 +65,11 @@ const ForgotPass = props => {
   return (
     <View style={styles.loginContainer}>
       <StatusBar backgroundColor={'#0099ff'} />
-      <Modal transparent={false} visible={show} animationType="slide">
-        <View style={styles.centerView}>
-          <View style={styles.modalView}>
-            <Image
-              source={require('../images/oreo_loader.gif')}
-              style={styles.modalImage}
-            />
-            <Text style={styles.modalText}>Loading...</Text>
-          </View>
+      {show ? (
+        <View style={styles.authLoader}>
+          <Progress.Bar color="#0099ff" indeterminate={true} width={360} />
         </View>
-      </Modal>
-      <Modal transparent={false} visible={msg} animationType="slide">
-        <View style={styles.centerView}>
-          <View style={styles.modalView}>
-            <Image
-              source={require('../images/green_tick.gif')}
-              style={styles.modalImage}
-            />
-            <Text style={styles.modalText}>Please check your sms box.</Text>
-            <TouchableHighlight>
-              <Button onPress={() => setMsg(false)} title="close" />
-            </TouchableHighlight>
-          </View>
-        </View>
-      </Modal>
-
+      ) : null}
       <Image
         style={styles.image}
         source={require('../images/oreo_music.gif')}
@@ -115,13 +97,13 @@ const ForgotPass = props => {
             <Button
               onPress={() => stepTwo()}
               disabled={regId.length > 0 ? false : true}
-              title={regId.length > 0 ? 'Send Sms' : 'oreo'}
+              title={regId.length > 0 ? 'Send Sms' : 'Hola!'}
             />
           ) : (
             <Button
               onPress={() => stepOne()}
               disabled={regId.length > 0 ? false : true}
-              title={regId.length > 0 ? 'Verify' : 'oreo'}
+              title={regId.length > 0 ? 'Verify' : 'Hola!'}
             />
           )}
         </TouchableHighlight>
@@ -161,30 +143,6 @@ const styles = StyleSheet.create({
   forgotPass: {
     color: 'black',
     marginTop: 30,
-  },
-  centerView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'red',
-  },
-  modalView: {
-    backgroundColor: 'skyblue',
-    padding: 10,
-    borderRadius: 10,
-    shadowColor: 'black',
-    elevation: 5,
-    alignItems: 'center',
-  },
-  modalText: {
-    marginBottom: 10,
-    color: '#ffff',
-    textAlign: 'center',
-    marginTop: 10,
-  },
-  modalImage: {
-    width: 150,
-    height: 150,
   },
 });
 

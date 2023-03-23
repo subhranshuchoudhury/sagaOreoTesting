@@ -7,6 +7,7 @@ import {
   Text,
   StyleSheet,
   ActivityIndicator,
+  Image,
 } from 'react-native';
 import ShareModule from './commonjs/ShareModule';
 ShareModule;
@@ -25,12 +26,11 @@ const Notices = props => {
         setIsLoading(false);
       })
       .catch(err => {
-        console.error(err);
+        console.log(err);
         setIsLoading(false);
       });
   };
   useEffect(() => {
-    // ShareModule();
     setData(undefined);
     switch (choice) {
       case 1:
@@ -46,7 +46,6 @@ const Notices = props => {
 
         break;
     }
-    console.log('Notices..');
   }, [choice]);
   return (
     <>
@@ -85,7 +84,7 @@ const Notices = props => {
               {isLoading ? (
                 <ActivityIndicator color={'#ffff'} size={'large'} />
               ) : (
-                'There is having some issues while fetching the notices from the server! This is a temporary error.'
+                'Notice ko prapt karne mai kuch dikkat aarha hai! Ye samasya kuch deer baad thik ho jayega.'
               )}
             </Text>
           </View>
@@ -99,14 +98,24 @@ const Notices = props => {
                 {index + 1}. {item.event}
               </Text>
             </View>
-
-            <Text
-              onPress={() =>
-                ShareModule(item.s_date + ': ' + item.event, item.eventLink)
-              }
-              style={[style.box, style.notice_date]}>
-              {item.s_date}
-            </Text>
+            <View style={style.shareContainer}>
+              <Text
+                onPress={() =>
+                  ShareModule(item.s_date + ': ' + item.event, item.eventLink)
+                }
+                style={[style.box, style.notice_date]}>
+                {item.s_date}
+              </Text>
+              <TouchableOpacity
+                onPress={() =>
+                  ShareModule(item.s_date + ': ' + item.event, item.eventLink)
+                }>
+                <Image
+                  style={style.shareImage}
+                  source={require('../images/icons/icons8-share-64.png')}
+                />
+              </TouchableOpacity>
+            </View>
           </TouchableOpacity>
         )}
         keyExtractor={() => key_extractor++}
@@ -149,13 +158,26 @@ const style = StyleSheet.create({
     color: '#ffff',
   },
   notice_date: {
-    height: 35,
+    height: 38,
     marginTop: 0,
     color: '#ffff',
     borderBottomRightRadius: 8,
     borderBottomLeftRadius: 8,
     borderTopRightRadius: 0,
     borderTopLeftRadius: 0,
+    width: 160,
+  },
+  shareContainer: {
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  shareImage: {
+    width: 30,
+    height: 30,
+    margin: 10,
+    marginLeft: 0,
+    marginTop: 5,
   },
 });
 

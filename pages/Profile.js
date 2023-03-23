@@ -268,7 +268,7 @@ const Profile = props => {
         <TouchableOpacity style={styles.btn}>
           <Button
             disabled={props.route.params.data.isError ? true : false}
-            onPress={() => props.navigation.navigate('ChangePassword')}
+            onPress={() => props.navigation.navigate('Change Password')}
             title={'change password'}
           />
         </TouchableOpacity>
