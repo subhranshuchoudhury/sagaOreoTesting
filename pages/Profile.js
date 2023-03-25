@@ -34,7 +34,10 @@ const Profile = props => {
   const setImageLink = () => {
     storeData('PROFILE_IMG_URI', profileLink);
     setShow(false);
-    Alert.alert('Profile has been updated.', 'Reopen the page to see effect.');
+    Alert.alert(
+      'Profile Update ho chukaa hai!',
+      'Kuch time lagta hai har jagahh photo dekhne me. Application ko 2 3 baar open karoge to sahi hojayega',
+    );
   };
 
   const getData = async KEY => {
@@ -132,6 +135,7 @@ const Profile = props => {
             <TextInput
               onChangeText={text => setProfileLink(text)}
               style={styles.textInput}
+              placeholderTextColor={'red'}
               placeholder="Enter image url/link.."
             />
             <View style={[styles.buttonContainer, styles.modalBtn]}>
@@ -153,7 +157,7 @@ const Profile = props => {
           ) : (
             <Image
               style={styles.profileImage}
-              source={require('../images/PROFILE.jpeg')}
+              source={require('../images/PROFILE.png')}
             />
           )}
         </TouchableOpacity>
@@ -289,7 +293,7 @@ const styles = StyleSheet.create({
     width: 170,
     height: 170,
     margin: 20,
-    borderRadius: 90,
+    borderRadius: 100,
     borderWidth: 5,
     borderColor: '#0099ff',
   },
@@ -306,6 +310,7 @@ const styles = StyleSheet.create({
   },
   progressIndicator: {
     marginTop: 5,
+    alignSelf: 'center',
   },
   buttonContainer: {
     justifyContent: 'space-between',
@@ -319,7 +324,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'red',
   },
   modalView: {
-    backgroundColor: 'skyblue',
+    backgroundColor: 'black',
     width: '70%',
     padding: 10,
     borderRadius: 10,
@@ -333,7 +338,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   textInput: {
-    color: 'black',
+    color: '#ffff',
   },
   modalBtn: {
     margin: 1,

@@ -1,8 +1,5 @@
 {
-    "cSpell.words": [
-        "imagelink",
-        "redirector",
-        "Webber"
-    ],
-    "java.compile.nullAnalysis.mode": "disabled"
+  "cSpell.words": ["imagelink", "redirector", "Webber"],
+  "java.compile.nullAnalysis.mode": "disabled",
+  "java.configuration.updateBuildConfiguration": "interactive"
 }

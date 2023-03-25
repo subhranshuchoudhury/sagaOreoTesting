@@ -72,7 +72,7 @@ const ForgotPass = props => {
       ) : null}
       <Image
         style={styles.image}
-        source={require('../images/oreo_music.gif')}
+        source={require('../images/105919-password-security.gif')}
       />
       <View style={styles.inputBoxContainer}>
         {levelOne ? (
@@ -143,6 +143,9 @@ const styles = StyleSheet.create({
   forgotPass: {
     color: 'black',
     marginTop: 30,
+  },
+  authLoader: {
+    alignSelf: 'center',
   },
 });
 

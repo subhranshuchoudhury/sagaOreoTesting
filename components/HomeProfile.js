@@ -25,12 +25,12 @@ const HomeProfile = props => {
     if (response !== null) {
       setProfileImage(response);
     } else {
-      // setProfileImage(undefined);
+      setProfileImage(undefined);
     }
   };
   useEffect(() => {
-    extractLocalData();
     extractProfImage();
+    extractLocalData();
   }, []);
   return (
     <ImageBackground
@@ -39,21 +39,19 @@ const HomeProfile = props => {
       <View style={styles.container}>
         <TouchableOpacity
           onPress={() => props.nav('Profile', {isError: props.isError})}>
-          <Image
-            style={[
-              styles.profileImage,
-              {
-                width: 51,
-                height: 51,
-                resizeMode: 'contain',
-              },
-            ]}
-            source={
-              profileImage
-                ? {uri: JSON.parse(profileImage)}
-                : require('../images/PROFILE.jpeg')
-            }
-          />
+          {profileImage ? (
+            <Image
+              style={styles.profileImage}
+              source={{
+                uri: JSON.parse(profileImage),
+              }}
+            />
+          ) : (
+            <Image
+              style={styles.profileImage}
+              source={require('../images/PROFILE.png')}
+            />
+          )}
         </TouchableOpacity>
         <Text style={styles.welcomeUser}>Hi, {USER_NAME || 'OREO'}!</Text>
       </View>
@@ -69,7 +67,6 @@ const styles = StyleSheet.create({
   },
   welcomeUser: {
     color: '#ffff',
-    // textAlignVertical: 'center',
     textAlign: 'center',
     fontSize: 20,
     fontWeight: 'bold',
@@ -79,6 +76,9 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     borderColor: '#53C5F6',
     borderWidth: 2,
+    width: 55,
+    height: 55,
+    resizeMode: 'contain',
   },
   backgroundImage: {
     height: 100,

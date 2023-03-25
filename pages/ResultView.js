@@ -164,6 +164,9 @@ const styles = StyleSheet.create({
   errorInnerText: {
     color: '#ffff',
   },
+  progressIndicator: {
+    alignSelf: 'center',
+  },
 });
 
 export default ResultView;

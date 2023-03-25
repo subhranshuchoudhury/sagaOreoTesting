@@ -103,7 +103,7 @@ const Login = props => {
       ) : null}
       <Image
         style={styles.image}
-        source={require('../images/oreo_music.gif')}
+        source={require('../images/78126-secure-login.gif')}
       />
       <View style={styles.inputBoxContainer}>
         <Text style={styles.text}>Registration Number</Text>
@@ -173,6 +173,9 @@ const styles = StyleSheet.create({
   forgotPass: {
     color: 'black',
     marginTop: 30,
+  },
+  authLoader: {
+    alignSelf: 'center',
   },
 });
 

@@ -5,45 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Progress from 'react-native-progress';
 
 const DetailedResultView = props => {
-  const TEST_DATA = {
-    Semdata: [
-      {
-        earnedcredit: 4,
-        grade: 'A',
-        stynumber: 1,
-        subjectcode: 'CSE1001',
-        subjectdesc: 'Introduction to Computer Programming',
-      },
-      {
-        earnedcredit: 4,
-        grade: 'B',
-        stynumber: 1,
-        subjectcode: 'PHY1001',
-        subjectdesc: 'University Physics: Mechanics',
-      },
-      {
-        earnedcredit: 4,
-        grade: 'A',
-        stynumber: 1,
-        subjectcode: 'CSE1002',
-        subjectdesc: 'Discrete Mathematics',
-      },
-      {
-        earnedcredit: 3,
-        grade: 'B',
-        stynumber: 1,
-        subjectcode: 'HSS1010',
-        subjectdesc: 'Communication and Critical Thinking',
-      },
-      {
-        earnedcredit: 4,
-        grade: 'A',
-        stynumber: 1,
-        subjectcode: 'MTH1101',
-        subjectdesc: 'Calculus A',
-      },
-    ],
-  };
   const [IsLoading, setIsLoading] = useState(false);
   const [STD_RESULT, setSTD_RESULT] = useState([]);
   let key_extractor = 1;
@@ -156,6 +117,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginBottom: 10,
+  },
+  progressIndicator: {
+    alignSelf: 'center',
   },
 });
 

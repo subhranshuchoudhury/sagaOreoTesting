@@ -15,6 +15,8 @@ import Attendance from './pages/Attendance';
 import ResultView from './pages/ResultView';
 import DetailedResultView from './pages/DetailedResultView';
 import HolidayList from './pages/HolidayList';
+import AdmitCardView from './pages/AdmitCardView';
+import ExamsView from './pages/ExamsView';
 
 const Stack = createNativeStackNavigator();
 const App = props => {
@@ -47,6 +49,8 @@ const App = props => {
           <Stack.Screen name="Attendance" component={Attendance} />
           <Stack.Screen name="Result" component={ResultView} />
           <Stack.Screen name="Detailed Result" component={DetailedResultView} />
+          <Stack.Screen name="Admit Card" component={AdmitCardView} />
+          <Stack.Screen name="Exams" component={ExamsView} />
           <Stack.Screen name="Holiday" component={HolidayList} />
         </Stack.Navigator>
       </NavigationContainer>

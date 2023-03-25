@@ -164,6 +164,9 @@ const styles = StyleSheet.create({
   padding: {
     padding: 20,
   },
+  progressIndicator: {
+    alignSelf: 'center',
+  },
 });
 
 export default Attendance;

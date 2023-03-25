@@ -76,7 +76,7 @@ const ChangePass = props => {
       ) : null}
       <Image
         style={styles.image}
-        source={require('../images/oreo_music.gif')}
+        source={require('../images/105919-password-security.gif')}
       />
       <View style={styles.inputBoxContainer}>
         <Text style={styles.text}>New Password</Text>
@@ -127,6 +127,9 @@ const styles = StyleSheet.create({
   loginButton: {
     width: '70%',
     marginTop: 30,
+  },
+  authLoader: {
+    alignSelf: 'center',
   },
 });
 

@@ -45,6 +45,30 @@ const NavigationButtons = props => {
           </View>
         </TouchableOpacity>
         <TouchableOpacity
+          onPress={() => console.warn('coming soon..')}
+          onLongPress={() => props.nav('Exams')}>
+          <View style={styles.navBtnHolder}>
+            <View style={styles.NavBtn}>
+              <Image
+                style={styles.icon}
+                source={require('../images/icons/icons8-certificates-64.png')}
+              />
+              <Text style={styles.text}>Admit Card</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => console.warn('coming soon...')}>
+          <View style={styles.navBtnHolder}>
+            <View style={styles.NavBtn}>
+              <Image
+                style={styles.icon}
+                source={require('../images/icons/icons8-bell-64.png')}
+              />
+              <Text style={styles.text}>Notifications</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
           onPress={() =>
             props.redirector(
               'https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAANAAQVuPFJUME1NWTRVUEVBRUE0OFRXUTdGNUc2S0c4VC4u',

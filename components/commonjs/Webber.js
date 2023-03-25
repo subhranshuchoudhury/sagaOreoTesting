@@ -10,8 +10,10 @@ const Webber = props => {
     <View style={styles.WebViewContainer}>
       {load ? (
         <>
-          <Progress.Bar color="#0099ff" indeterminate={true} width={360} />
-          <Text style={styles.text}>Please wait...</Text>
+          <View style={styles.loader}>
+            <Progress.Bar color="#0099ff" indeterminate={true} width={360} />
+            <Text style={styles.text}>Please wait...</Text>
+          </View>
         </>
       ) : null}
       <WebView
@@ -44,6 +46,9 @@ const styles = StyleSheet.create({
   imageLoader: {
     height: '30%',
     width: '100%',
+  },
+  loader: {
+    alignSelf: 'center',
   },
 });
 

@@ -23,7 +23,6 @@ const PersonalNotice = props => {
             return;
           }
         });
-        console.log(data);
       });
   };
   useEffect(() => {
